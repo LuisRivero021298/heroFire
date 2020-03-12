@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+.latir {
+	-webkit-animation: latir infinite 5s linear;
+	animation: latir infinite 5s linear;
+}
+
+
+@keyframes latir {
+    from { transform: none; }
+    50% { transform: scale(1.2); }
+    to { transform: none; }
+}

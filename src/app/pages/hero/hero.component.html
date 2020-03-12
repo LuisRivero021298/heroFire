@@ -1,0 +1,21 @@
+<h1> Hero <small> name </small></h1>
+<hr>
+
+<div class="row text-right">
+	<div class="col">
+		<button routerLink="/heroes" class="btn btn-danger">
+			<i class="fa fa-arrow-left"></i>
+			Back
+		</button>
+	</div>
+</div>
+
+
+<div class="row animated fadeIn faster">
+	<div class="col">
+		<app-hero-form 	[hero]="hero" 
+										(vForm)="insertHero($event)"
+										(heroStatus)="heroStatus()">		
+		</app-hero-form>
+	</div>
+</div>

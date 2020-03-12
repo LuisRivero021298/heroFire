@@ -1,0 +1,79 @@
+<h1>Heroes list</h1>
+<hr>
+
+<div class="row">
+	<div class="col text-right">
+		<button routerLink="/hero/new" class="btn btn-primary">
+			<i class="fa fa-plus"></i>
+			Add
+		</button>
+	</div>
+</div>
+
+<table 
+  class="table mt-3 animated fadeIn faster"
+  *ngIf="!loading && heroes.length > 0"
+>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Superpower</th>
+      <th scope="col">Status</th>
+      <th scope="col">Tools</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hero of heroes; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{hero.name}}</td>
+      <td>{{hero.superPower}}</td>
+      <td>
+        <label 
+          class="badge"
+          [class.badge-success]="hero.status"
+          [class.badge-danger]="!hero.status"
+        >
+          {{hero.status | heroStatus }}
+        </label>
+        
+      </td>
+      <td>
+        <button 
+          class="btn btn-info mr-2"
+          [routerLink]="['/hero', hero.id]"
+        >
+          <i class="fa fa-pen"></i>
+          Edit
+        </button>
+        <button 
+          class="btn btn-danger" 
+          (click)="deleteHero(hero.id, i)"
+        >
+          <i class="fa fa-trash"></i>
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-info text-center mt-3 animated fadeInDown" *ngIf="loading">
+	<h4 class="alert-heading">Loading</h4>
+	<p>
+		<i class="fa fa-sync-alt fa-spin fa-2x"></i>
+	</p>
+	<p class="mb-0">
+		Please wait
+	</p>
+</div>
+
+<div 
+  class="alert alert-warning text-center mt-3 animated shake" 
+  *ngIf="!loading && heroes.length === 0"
+>
+	<h4 class="alert-heading">No records found</h4>
+	<p>
+		<i class="fa fa-exclamation fa-2x latir"></i>
+	</p>
+</div>

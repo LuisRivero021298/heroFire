@@ -1,0 +1,78 @@
+<form [formGroup]="form" 
+					(ngSubmit)="validateForm()" novalidate>
+
+			<div class="form-group">
+				<label>Firebase ID</label>
+				<input 
+					type="text"
+					placeholder="Firebase ID" 
+					class="form-control"
+					disabled
+					formControlName="id" 
+					[class.is-invalid]="noValidId"
+				>
+
+				<small class="form-text text-muted">
+					This field is self generated
+				</small>
+			</div>
+
+			<div class="form-group">
+				<label>Name</label>
+				<input 
+					type="text"
+					placeholder="Name" 
+					class="form-control"
+					formControlName="name"
+					[class.is-invalid]="noValidName" 
+				>
+			</div>
+
+			<div class="form-group">
+				<label>Superpower</label>
+				<input 
+					type="text"
+					placeholder="Superpower" 
+					class="form-control"
+					formControlName="superPower"
+					[class.is-invalid]="noValidSuperPower"  
+				>
+			</div>
+
+			<div class="form-group">
+				<label>Status</label>
+				<br>
+
+				<button 
+					class="btn btn-outline-success w-50"
+					type="button"
+					*ngIf="hero.status"
+					(click)="hStatus()"
+					value=""
+				>
+					<i class="fa fa-smile-wink"></i>
+					Alive
+				</button>
+				
+				<button 
+					class="btn btn-outline-danger w-50"
+					type="button"
+					*ngIf="!hero.status"
+					(click)="hStatus()"
+				>
+					<i class="fa fa-dizzy"></i>
+					Deceased
+				</button>
+
+			</div>
+			{{ hero.status }}
+			{{ form.valid }}
+			<div class="form-group text-center">
+				<button 
+					class="btn btn-primary w-25" 
+					type="submit">
+					<i class="fa fa-save"></i>
+					Save		
+				</button>
+			</div>
+		</form>
